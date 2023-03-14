@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import moment from 'moment';
 
 const FormEvent = (props) => {
     //{id: 1, title: 'Women ', location: 'SF', eventtime: '2023-04-21'}
 
     // This is the original State with not initial data
-    const [event, setEvent] = useState({title: "", location: "", eventtime: "2023-04-21"})
+    const [event, setEvent] = useState({title: "", location: "", eventtime: ""})
 
     //create functions that handle the event of the user typing into the form
     const handleTitleChange = (event) => {
@@ -19,6 +20,12 @@ const FormEvent = (props) => {
         const newLocation = event.target.value;
         //console.log(location);
         setEvent((event) => ({ ...event, location: newLocation }));
+    };
+
+    const handleDateChange = (event) => {
+        const newTime = moment(event.target.value.timeStamp).format('YYYY-MM-DD');
+        //console.log(newTime);
+        setEvent((event) => ({ ...event, eventtime: newTime }));
     };
 
     const handleSubmit = (e) =>{
@@ -40,6 +47,11 @@ const FormEvent = (props) => {
             <Form.Group className="mb-8" controlId="add-event-location">
                 <Form.Label>Location</Form.Label>
                 <Form.Control type="text" placeholder="Location of your event" value={event.location} onChange={handleLocationChange} />
+            </Form.Group>
+
+            <Form.Group className="mb-8" controlId="add-event-date">
+                <Form.Label>Date</Form.Label>
+                <Form.Control type="date" value={event.eventtime} onChange={handleDateChange} />
             </Form.Group>
             <Button variant="primary" type="submit">SAVE</Button>
         </Form>
