@@ -13,3 +13,11 @@ h1 {
   color: #00556e;
   margin-bottom: 50px !important;
 }
+
+Form{
+  margin-top: 25px;
+}
+
+button.btn.btn-primary{
+  margin-top: 25px;;
+}
